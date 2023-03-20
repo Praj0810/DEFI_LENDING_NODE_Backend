@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
+const database = process.env["DB"];
+
 mongoose.set('strictQuery', false);
-mongoose.connect("mongodb://localhost:27017/KYC_Details",{
+mongoose.connect(database,{
     useNewUrlParser:true,
     useUnifiedTopology:true,
-    // useCreateIndex:true,
-    // useFindAndModify:true
 }).then(()=>{
-    console.log("Database Connection Sucessfully");
+    console.log("Database Connection Successfully");
 }).catch(()=>{
     console.log("Not connected To database");
 });
