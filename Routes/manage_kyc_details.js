@@ -28,10 +28,7 @@ const kycData = multer({storage:storages})
 
 router.get("/getDetails/:id", async (req,res) => {
     try{
-        const reqID  = req.params.id;
-        const record = await control.getUserKycStatus(req,res,reqID);
-        console.log(record)
-        res.send(record);
+        await control.getUserKycStatus(req,res);
     }catch (error){
         console.log(error);
     }
