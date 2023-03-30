@@ -3,7 +3,7 @@ const router = express.Router();
 const FormData = require('form-data');
 const multer = require('multer');
 const form_data = new FormData();
-const control = require('../Controller/user_kyc_store')
+const control = require('../Controller/userKycStore')
 
 // console.log(control);
 

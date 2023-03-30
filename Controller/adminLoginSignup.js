@@ -1,18 +1,18 @@
 const Admin = require("../Model/AdminSchema");
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
-const jwtSecret = "qwerty131";
+const jwtSecret = process.env["JWTKey"];
 
 
 const signUp = async(req, res) => {
   try {
     console.log(req.body);
     const admin = new Admin({
-        Admin_Account_Address : req.body.Admin_Account_Address,
-        First_Name : req.body.First_Name,
-        Last_Name : req.body.Last_Name,
-        EmailId : req.body.EmailId,
-        Password :  await bcrypt.hash(req.body.Password, 10),
+      adminAccountAddress : req.body.adminAccountAddress,
+      firstName : req.body.firstName,
+      lastName : req.body.lastName,
+      emailId : req.body.emailId,
+      password :  await bcrypt.hash(req.body.password, 10),
       });
       await admin.save();
       res.send("Admin signup Successful");
@@ -27,21 +27,21 @@ const signUp = async(req, res) => {
 
 const login = async (req, res) => {
     try {
-      const { EmailId, Password } = req.body;
-      if (!EmailId || !Password) {
-        return res.status(400).send({ error: "Plz enter the data" });
+      const { emailId, password } = req.body;
+      if (!emailId || !password) {
+        return res.status(400).send({ error: "Please enter the Data" });
       }
-      const adminLogin = await Admin.findOne({ EmailId: EmailId });
+      const adminLogin = await Admin.findOne({ emailId: emailId });
       
       if (adminLogin) {
-        const validPassword = await bcrypt.compare(Password, adminLogin.Password);
+        const validPassword = await bcrypt.compare(password, adminLogin.password);
         if (!validPassword) {
-          res.status(400).send({ error: "enter correct password" });
+          res.status(400).send({ error: "Enter correct password" });
         } else {
           const token = jwt.sign({_id : adminLogin._id}, jwtSecret);
           res.status(200).json({token :token , message: "Admin Login Successfully" });
         }}else {
-        res.status(400).send({message: "invalid credentials"}); 
+        res.status(400).send({message: "Invalid Credentials"}); 
       }
   
     } catch (error) {

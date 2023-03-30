@@ -1,27 +1,27 @@
 const mongoose = require('mongoose');
 
-const KYCFormSchema = new mongoose.Schema({
-    User_Account_Address:{
+const kYCFormSchema = new mongoose.Schema({
+    userAccountAddress:{
         type:String,
         required:true
     },
-    UserName:{
+    userName:{
         type:String,
         required:true
     },
-    PanCard_Number:{
+    panCardNumber:{
         type:String,
         required:true
     },
-    KycStatus:{
+    kycStatus:{
         type:Boolean,
         default:true
     },
-    DocsImage : {
+    docsImage : {
         type:String,
         require: true
     }
 })
 
-const KycForm = new mongoose.model('KycForm', KYCFormSchema)
-module.exports = KycForm
+const kycForm = new mongoose.model('KycForm', kYCFormSchema)
+module.exports = kycForm

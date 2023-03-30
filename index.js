@@ -7,9 +7,9 @@ const fs = require('fs')
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 app.use(express.static('KYC_Docs'));
-app.use("/api",require("./Routes/manage_kyc_details"));
+app.use("/api",require("./Routes/manageKycDetails"));
 app.use("/api", require("./Routes/adminRoute"));
-require("./Database/dbconnect");
+require("./Database/dbConnect");
 app.use(cors());
 
 

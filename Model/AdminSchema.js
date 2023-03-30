@@ -1,23 +1,23 @@
 const mongoose = require("mongoose");
 
 const AdminLoginSchema = new mongoose.Schema({
-    Admin_Account_Address : {
+    adminAccountAddress : {
         type: String,
         require: true
     },
-    First_Name:{
+    firstName:{
         type:String,
         required:true
     },
-    Last_Name:{
+    lastName:{
         type:String,
         required:true
     },
-    EmailId:{
+    emailId:{
         type:String,
         required:true
     },
-    Password:{
+    password:{
         type:String,
         default:true
     },
