@@ -1,15 +1,15 @@
-const KycForm = require('../Model/KYCschema');
+const kycForm = require('../Model/KYCSchema');
 const express = require('express');
 
 const addKYCDetails =  async (req, res, kycImg) => {
     try {
     
-        const User = new KycForm({
-            User_Account_Address: req.body.User_Account_Address,
-            UserName:req.body.UserName,
-            PanCard_Number:req.body.PanCard_Number,
-            KycStatus:req.body.KycStatus,
-            DocsImage:kycImg
+        const User = new kycForm({
+            userAccountAddress: req.body.userAccountAddress,
+            userName:req.body.userName,
+            panCardNumber:req.body.panCardNumber,
+            kycStatus:req.body.kycStatus,
+            docsImage:kycImg
         });
 
         const addKYCDetail = await User.save();
@@ -25,7 +25,7 @@ const addKYCDetails =  async (req, res, kycImg) => {
 const getUserKycStatus = async (req, res) => {
     try {
         const  { id } = req.params;
-        const data = await KycForm.findOne({User_Account_Address:id},{_id:0});
+        const data = await kycForm.findOne({userAccountAddress:id},{_id:0});
         console.log(data,"kyc done")
         if(!data){
             return res.status(200).json({
